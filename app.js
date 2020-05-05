@@ -10,9 +10,99 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const questions = [
+    {
+        type: "list",
+        name: "type",
+        message: "Which type of employee are you? ",
+        choices: ["Manager", "Engineer", "Intern"]
+    },
+    {
+        type: "input",
+        name: "name",
+        message: "What is your name? "
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is your employee ID? "
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your email address? "
+    }
+];
+
+const engineerQ = {
+    type: "input",
+    name: "engineerGithub",
+    message: "What is your GitHub username? "
+};
+
+const managerQ = {
+    type: "input",
+    name: "managerOfficeNum",
+    message: "What is your office number? "
+};
+
+const internQ = {
+    type: "input",
+    name: "internSchool",
+    message: "What school do you attend? "
+};
+
+let type, name, id, email, engineerGithub, managerOfficeNum, internSchool;
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+function askQuestions() {
+    inquirer
+        .prompt(questions)
+        .then(data => {
+            type = data.type;
+            name = data.name;
+            id = data.id;
+            email = data.email;
+            return type;
+        })
+        .then(type => {
+            let followupQ;
+
+            if (type === "Engineer") {
+                followupQ = engineerQ;
+            } else if (type === "Intern") {
+                followupQ = internQ;
+            } else {
+                followupQ = managerQ;
+            };
+
+            return inquirer.prompt(followupQ);
+        })
+        .then(data => {
+            let value = Object.values(data)[0];
+            let employee;
+
+            if (type === "Engineer") {
+                engineerGithub = value;
+                employee = new Engineer(name, id, email, engineerGithub);
+            } else if (type === "Intern") {
+                internSchool = value;
+                employee = new Intern(name, id, email, internSchool);
+            } else {
+                managerOfficeNum = value;
+                employee = new Manager(name, id, email, managerOfficeNum);
+            };
+
+            console.log(employee);
+            
+        });
+        
+};
+
+askQuestions();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
