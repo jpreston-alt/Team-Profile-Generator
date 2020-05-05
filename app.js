@@ -112,8 +112,11 @@ function addEmployee() {
             if (addAnother === true) {
                 addEmployee();
             } else {
-                // render(employeesArr);
-                return;
+                const html = render(employeesArr);
+                fs.writeFile(outputPath, html, (err) => {
+                    if (err) throw err;
+                    console.log('The file has been saved!');
+                });
             }
         });
         
