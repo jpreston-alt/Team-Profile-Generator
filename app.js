@@ -109,17 +109,19 @@ function addEmployee() {
         })
         .then(data => {
             let addAnother = data.addAnother;
+
             if (addAnother === true) {
                 addEmployee();
             } else {
                 const html = render(employeesArr);
-                fs.writeFile(outputPath, html, (err) => {
-                    if (err) throw err;
+                fs.writeFile(outputPath, html, () => {
                     console.log('The file has been saved!');
                 });
-            }
+            };
+        })
+        .catch(err => {
+            if (err) throw err;
         });
-        
 };
 
 addEmployee();
