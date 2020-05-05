@@ -9,65 +9,14 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
-const questions = [
-    {
-        type: "list",
-        name: "type",
-        message: "Which type of employee are you? ",
-        choices: ["Manager", "Engineer", "Intern"]
-    },
-    {
-        type: "input",
-        name: "name",
-        message: "What is your name? "
-    },
-    {
-        type: "input",
-        name: "id",
-        message: "What is your employee ID? "
-    },
-    {
-        type: "input",
-        name: "email",
-        message: "What is your email address? "
-    }
-];
-
-const engineerQ = {
-    type: "input",
-    name: "github",
-    message: "What is your GitHub username? "
-};
-
-const managerQ = {
-    type: "input",
-    name: "officeNum",
-    message: "What is your office number? "
-};
-
-const internQ = {
-    type: "input",
-    name: "school",
-    message: "What school do you attend? "
-};
-
-const addAnotherQ = {
-    type: "confirm",
-    name: "addAnother",
-    message: "Would you like to add another employee? "
-}
+const questions = require("./lib/questions");
 
 let type, name, id, email, github, officeNum, school;
 let employeesArr = [];
 
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
 function addEmployee() {
     inquirer
-        .prompt(questions)
+        .prompt(questions.questions)
         .then(data => {
             type = data.type;
             name = data.name;
@@ -79,11 +28,11 @@ function addEmployee() {
             let followupQ;
 
             if (type === "Engineer") {
-                followupQ = engineerQ;
+                followupQ = questions.engineerQ;
             } else if (type === "Intern") {
-                followupQ = internQ;
+                followupQ = questions.internQ;
             } else {
-                followupQ = managerQ;
+                followupQ = questions.managerQ;
             };
 
             return inquirer.prompt(followupQ);
@@ -105,7 +54,7 @@ function addEmployee() {
 
             employeesArr.push(employee);
             console.log(employeesArr);
-            return inquirer.prompt(addAnotherQ);
+            return inquirer.prompt(questions.addAnotherQ);
         })
         .then(data => {
             let addAnother = data.addAnother;
@@ -125,6 +74,9 @@ function addEmployee() {
 };
 
 addEmployee();
+
+// Write code to use inquirer to gather information about the development team members,
+// and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
