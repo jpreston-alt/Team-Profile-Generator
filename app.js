@@ -11,7 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const questions = require("./lib/questions");
 
-let type, name, id, email, github, officeNum, school;
+let type, name, id, email;
 let employeesArr = [];
 
 function addEmployee() {
@@ -42,18 +42,14 @@ function addEmployee() {
             let employee;
 
             if (type === "Engineer") {
-                github = value;
-                employee = new Engineer(name, id, email, github);
+                employee = new Engineer(name, id, email, value);
             } else if (type === "Intern") {
-                school = value;
-                employee = new Intern(name, id, email, school);
+                employee = new Intern(name, id, email, value);
             } else {
-                officeNum = value;
-                employee = new Manager(name, id, email, officeNum);
+                employee = new Manager(name, id, email, value);
             };
 
             employeesArr.push(employee);
-            console.log(employeesArr);
             return inquirer.prompt(questions.addAnotherQ);
         })
         .then(data => {
