@@ -36,29 +36,36 @@ const questions = [
 
 const engineerQ = {
     type: "input",
-    name: "engineerGithub",
+    name: "github",
     message: "What is your GitHub username? "
 };
 
 const managerQ = {
     type: "input",
-    name: "managerOfficeNum",
+    name: "officeNum",
     message: "What is your office number? "
 };
 
 const internQ = {
     type: "input",
-    name: "internSchool",
+    name: "school",
     message: "What school do you attend? "
 };
 
-let type, name, id, email, engineerGithub, managerOfficeNum, internSchool;
+const addAnotherQ = {
+    type: "confirm",
+    name: "addAnother",
+    message: "Would you like to add another employee? "
+}
+
+let type, name, id, email, github, officeNum, school;
+let employeesArr = [];
 
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-function askQuestions() {
+function addEmployee() {
     inquirer
         .prompt(questions)
         .then(data => {
@@ -86,23 +93,33 @@ function askQuestions() {
             let employee;
 
             if (type === "Engineer") {
-                engineerGithub = value;
-                employee = new Engineer(name, id, email, engineerGithub);
+                github = value;
+                employee = new Engineer(name, id, email, github);
             } else if (type === "Intern") {
-                internSchool = value;
-                employee = new Intern(name, id, email, internSchool);
+                school = value;
+                employee = new Intern(name, id, email, school);
             } else {
-                managerOfficeNum = value;
-                employee = new Manager(name, id, email, managerOfficeNum);
+                officeNum = value;
+                employee = new Manager(name, id, email, officeNum);
             };
 
-            console.log(employee);
-            
+            employeesArr.push(employee);
+            console.log(employeesArr);
+            return inquirer.prompt(addAnotherQ);
+        })
+        .then(data => {
+            let addAnother = data.addAnother;
+            if (addAnother === true) {
+                addEmployee();
+            } else {
+                // render(employeesArr);
+                return;
+            }
         });
         
 };
 
-askQuestions();
+addEmployee();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
