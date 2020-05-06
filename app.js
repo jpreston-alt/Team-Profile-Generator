@@ -10,10 +10,10 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const questions = require("./lib/questions");
-const managerQuestions = questions.managerQuestions;
-const engineerQuestions = questions.engineerQuestions;
-const internQuestions = questions.internQuestions;
+const Questions = require("./lib/Questions");
+const managerQuestions = Questions.managerQuestions;
+const engineerQuestions = Questions.engineerQuestions;
+const internQuestions = Questions.internQuestions;
 
 let employeesArr = [];
 let addMember;
