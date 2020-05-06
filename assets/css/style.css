@@ -1,0 +1,11 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    /* background-image: url("../images/img4.jpg");
+    background-position: center;
+    background-size: cover; */
+    background: rgb(41,70,81);
+    background: linear-gradient(360deg, rgba(41,70,81,1) 23%, rgba(28,39,43,1) 100%);
+}
+
+
