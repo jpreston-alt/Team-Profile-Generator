@@ -29,6 +29,9 @@ function init() {
             const manager = new Manager(name, id, email, officeNum);
             employeesArr.push(manager);
             addNewMember();
+        })
+        .catch(err => {
+            if (err) throw err;
         });
 };
 
@@ -39,7 +42,8 @@ function addNewMember() {
         addIntern();
     } else {
         const html = render(employeesArr);
-        fs.writeFile(outputPath, html, () => {
+        fs.writeFile(outputPath, html, (err) => {
+            if (err) throw err;
             console.log('The file has been saved!');
         });
     }
@@ -54,6 +58,9 @@ function addEngineer() {
             employeesArr.push(engineer);
             addNewMember();
         })
+        .catch(err => {
+            if (err) throw err;
+        });
 };
 
 function addIntern() {
@@ -64,6 +71,9 @@ function addIntern() {
             const intern = new Intern(name, id, email, school);
             employeesArr.push(intern);
             addNewMember();
+        })
+        .catch(err => {
+            if (err) throw err;
         });
 };
 
