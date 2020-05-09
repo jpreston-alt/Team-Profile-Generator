@@ -3,7 +3,7 @@
 
 ## Description
 
-Team Profile Generator is a command-line-interface application, that allows the user to quickly and easily generate a webpage for their Web Development teams profile. All they have to do is answer a series of prompted quesitons on the command line, and an HTML file will automatically be generated. 
+Team Profile Generator is a command-line-interface application, that allows the user to easily generate a team profile webpage, featuring summaries of their team members. All they have to do is answer a series of prompted quesitons on the command line about each members, and an HTML file will automatically be generated. 
 
 The user is first prompted to answer questions about their team manager. Then they may add as many engineers and interns as they like, and answer questions about them. When they have finished adding all the team members that they would like to, they may open up their generated html document in the browser and view their new team profile!
 
@@ -22,14 +22,14 @@ Building this program taught me so much about object oriented programing, and ho
 * Navigate to Team-Profile-Generator folder and install dependencies.
 * Run node app.js to begin.
 * Answer prompted questions about team members.
-* May add one manager, and as many engineers and interns as the user wants to each team.
+* May add one manager, and as many engineers and interns as the user wants.
 * When you are finished adding team members select the "I'm done" option.
 * Open your generated HTML file in the browser to view your teams profile.
 
 ### Answer these Questions:
 ![Questions Image](./assets/images/questions.png)
 
-### Generates a Team Profile like this:
+### Generate a Team Profile like this:
 ![Example Profile Image](./assets/images/profile-example.png)
 
 ## Technologies
@@ -60,6 +60,7 @@ npm run test
 * [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
 
 ## Finished Product
+View a sample of the generated HTML [here](https://github.com/jpreston-alt/Team-Profile-Generator/blob/master/output/team.html).<br>
 View a video demonstrating the application [here](https://drive.google.com/file/d/1GXXnc2q5sv7_aGnGXkHwB0Wg7uvSFpcF/view).
 
 ![](./assets/images/Team-Profile-Generator.gif)
