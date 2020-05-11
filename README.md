@@ -16,6 +16,7 @@ Building this program taught me so much about object oriented programing, and ho
 * [Installation](#Installation)
 * [Tests](#Tests)
 * [Credits](#Credits)
+* [Finished Product](#finished-product)
 
 
 ## Usage
